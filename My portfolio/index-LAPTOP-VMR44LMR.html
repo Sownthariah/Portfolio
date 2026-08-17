@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Home</title>
+    <script>
+        
+
+        document.addEventListener("DOMContentLoaded", function () {
+            const body = document.body;
+
+
+            // Apply CSS styles dynamically inside JavaScript
+            const style = `
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    display: flex;
+                    height: 100vh;
+                    background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1350&q=80');
+                    background-size: cover;
+                    background-position: center;
+                    color: white;
+                }
+                header {
+                    width: 20%;
+                    background-color: rgba(52, 73, 94, 0.9);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 20px 0;
+                }
+                header h2 {
+                    margin-bottom: 30px;
+                }
+                nav {
+                    width: 100%;
+                }
+                nav a {
+                    display: block;
+                    color: white;
+                    text-decoration: none;
+                    padding: 15px 20px;
+                    font-size: 18px;
+                    transition: background 0.3s;
+                }
+                nav a:hover {
+                    background-color: rgba(255, 255, 255, 0.2);
+                }
+                .profile-photo {
+                    margin-top: auto;
+                    margin-bottom: 20px;
+                }
+                .profile-photo img {
+                    width: 105px;
+                    height: 110px;
+                    border-radius: 50%;
+                    border: 3px solid #fff;
+                }
+                .content {
+                    padding: 40px;
+                    width: 80%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    background-color: rgba(44, 62, 80, 0.8);
+                    overflow-y: auto;
+                }
+                .content h1 {
+                    font-size: 48px;
+                    margin-bottom: 20px;
+                }
+                .content p {
+                    font-size: 18px;
+                    line-height: 1.6;
+                    margin-bottom: 30px;
+                }
+                .social-media {
+                    display: flex;
+                    gap: 15px;
+                }
+                .social-media a img {
+                    width: 40px;
+                    height: 40px;
+                    transition: transform 0.3s;
+                }
+                .social-media a img:hover {
+                    transform: scale(1.1);
+                }
+                    .progress {
+                    background-color: #34495e;
+                    width: 70%;
+                    height: 20px;
+                    border-radius: 10px;
+                    overflow: hidden;
+                }
+                .progress-bar {
+                    height: 100%;
+                    background-color: #3498db;
+                    text-align: right;
+                    padding-right: 5px;
+                    color: white;
+                    line-height: 20px;
+                }
+                .projects {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 20px;
+                }
+                .project {
+                    background-color: rgba(52, 73, 94, 0.9);
+                    padding: 20px;
+                    border-radius: 10px;
+                }
+                .project img {
+                    width: 100%;
+                    height: 150px;
+                    object-fit: cover;
+                    border-radius: 10px;
+                    margin-bottom: 15px;
+                } 
+
+                @media (max-width: 768px) {
+                    body {
+                        flex-direction: column;
+                    }
+                    header {
+                        width: 100%;
+                        flex-direction: row;
+                        justify-content: space-around;
+                        padding: 10px 0;
+                    }
+                    nav a {
+                        padding: 10px;
+                        font-size: 16px;
+                    }
+                    .profile-photo {
+                        display: none;
+                    }
+                    .content {
+                        width: 100%;
+                        padding: 20px;
+                    }
+                    .content h1 {
+                        font-size: 36px;
+                    }
+                        button {
+                    padding: 10px 20px;
+                    background-color: #3498db;
+                    color: white;
+                    border: none;
+                    cursor: pointer;
+                    font-size: 16px;
+                }
+                button:hover {
+                    background-color: #2980b9;
+                }
+                }
+            `;
+            
+            //  Define a function for BOM usage (getting window size)
+            function displayWindowSize() {
+                const windowSize = `Window size: ${window.innerWidth} x ${window.innerHeight}`;
+                alert(windowSize); // Show window size on page load
+            }
+
+            // Display window size on page load
+            displayWindowSize();
+
+            const styleSheet = document.createElement("style");
+            styleSheet.type = "text/css";
+            styleSheet.innerText = style;
+            document.head.appendChild(styleSheet);
+            
+
+            // Main content
+            body.innerHTML = `
+                <header>
+                    <div>
+                        <h2>My Portfolio</h2>
+                        <nav>
+                            <a href="#home" onclick="showSection('home')">Home</a>
+                            <a href="#about" onclick="showSection('about')">About</a>
+                            <a href="#skills" onclick="showSection('skills')">Skills</a>
+                            <a href="#projects" onclick="showSection('projects')">Projects</a>
+                            <a href="#resume" onclick="showSection('resume')">Resume</a>
+                            <a href="#contact" onclick="showSection('contact')">Contact</a>
+                        </nav>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="my self.jpg" alt="Profile Photo">
+                    </div>
+                </header>
+
+
+                <div class="content">
+                    <div id="home" class="section">
+                        <h1>Welcome to My Portfolio</h1><br>
+                        <p>Hello! I'm Sownthariah, <br>a passionate web developer with expertise in creating dynamic and responsive websites.<br> Explore my projects and feel free to get in touch!</p>
+                        <div class="social-media">
+                            <a href="https://wa.me/yourwhatsappnumber" target="_blank">
+                                <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp">
+                            </a>
+                            <a href="https://instagram.com/yourinstagram" target="_blank">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+                            </a>
+                            <a href="https://linkedin.com/in/yourlinkedin" target="_blank">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+                            </a>
+                            <a href="https://facebook.com/yourfacebook" target="_blank">
+                                <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook">
+                            </a>
+                        </div>
+                    </div>
+
+
+                    <!-- About Section -->
+                    <div id="about" class="section" style="display:none;">
+                        <h1>About Me</h1>
+                        <p>I am a Sownthariah,"As a BE Computer Science student,<br> I'm passionate about frontend development and dedicated to expanding my skills.<br> With a solid foundation in programming languages like C, C++, Java, and Python, </p>
+                        <button onclick="showMoreAbout()">More About Me</button>
+                        <div id="more-about" style="display:none;">
+                            <p> I'm excited to apply my knowledge to real-world projects and continuously improve. I'm eager to take on new challenges, contribute to innovative solutions, and make a meaningful impact in the tech industry. I'm looking forward to opportunities that will help me learn, grow, and drive positive change."<br> I love to learn new technologies and apply them in innovative projects.</p>
+                        </div>
+                    </div>
+
+
+                    <!-- Skills Section -->
+                    <div id="skills" class="section" style="display:none;">
+                        <h1>My Skills</h1>
+                        <p>Here are some of the technologies I work with:</p>
+                        <ul>
+                            <li><img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML" width="30"> 
+                            <span>HTML</span>
+                            <div class="progress"><div class="progress-bar" style="width: 50%;">50%</div></div></li><br><br>
+                            <li><img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS" width="30"> 
+                            <span>CSS</span>
+                            <div class="progress"><div class="progress-bar" style="width: 50%;">50%</div></div></li><br><br>
+                            <li><img src="https://cdn-icons-png.flaticon.com/128/1199/1199124.png" alt="JavaScript" width="30">
+                            <span>JavaScript</span>
+                            <div class="progress"><div class="progress-bar" style="width: 50%;">50%</div></div></li><br><br>
+                            <li><img src="https://cdn-icons-png.flaticon.com/128/3665/3665923.png" alt="C" width="30">
+                            <span>C</span>
+                            <div class="progress"><div class="progress-bar" style="width: 50%;">50%</div></div></li><br><br>
+                            <li><img src="https://cdn-icons-png.flaticon.com/128/6132/6132222.png" alt="C++" width="30"> 
+                            <span>C++</span>
+                            <div class="progress"><div class="progress-bar" style="width: 50%;">50%</div></div></li><br><br>
+                            <li><img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python" width="30">
+                            <span>Python</span>
+                            <div class="progress"><div class="progress-bar" style="width: 50%;">50%</div></div></li>
+                        </ul>
+                    </div>
+
+
+
+                    <!-- Projects Section -->
+<div id="projects" class="section" style="display:none;">
+  <h1>My Projects</h1>
+  <div class="projects">
+    <div class="project">
+      <img src="crystalcafe.jpg" alt="Project 1">
+      <h3>CrystalCafe</h3>
+      <p>A website designed for Crystal Cafe, showcasing their offerings.
+           Features menu, coffees, reviews, and contact information.
+           Developed during college skill training to enhance web development skills.</p>
+      <button onclick="showProjectDetails('project-1')">Read More</button>
+      <div id="project-1" style="display:none;">
+        <p>Utilized HTML and CSS to create a visually appealing and user-friendly interface.
+           A great starting point for my web development journey.
+           Improved understanding of web design principles and user experience.
+           Enhanced skills in coding and problem-solving.
+           A valuable project for my portfolio, demonstrating my capabilities.</p>
+      </div>
+    </div>
+    <div class="project">
+      <img src="delicious recipe.jpg" alt="Project 2">
+      <h3>Delicious Recipe</h3>
+      <p>Delicious Recipe website, a frontend development project completed during in-plant training at Informite.
+         Focused on designing and building a user-friendly interface for a culinary platform.
+         </p>
+      <button onclick="showProjectDetails('project-2')">Read More</button>
+      <div id="project-2" style="display:none;">
+        <p>Features four main pages: Home, About, Recipe, and Contact, showcasing HTML, CSS, and JavaScript skills.Developed to provide an engaging experience for food enthusiasts and cooking professionals.
+           Implemented responsive design principles for a seamless user experience across devices.
+           Utilized modern frontend development tools and techniques to build an interactive website.
+          </p>
+      </div>
+    </div>
+    <div class="project">
+      <img src="desert ride.jpg" alt="Project 3">
+      <h3>Desert Ride</h3>
+      <p>Desert Ride, a 3D game developed using Unity, completed as a team project in the Applied Lab.
+         Collaborated with a team of four members to design and build an immersive gaming experience.</p>
+      <button onclick="showProjectDetails('project-3')">Read More</button>
+      <div id="project-3" style="display:none;">
+        <p>Players navigate a thrilling desert terrain, overcoming obstacles and challenges.
+           Implemented Unity features such as physics, graphics, and animations to create a realistic environment.
+           Developed problem-solving skills, teamwork, and communication through this project.
+           A showcase of our Unity skills and game development capabilities.</p>
+      </div>
+    </div>
+    <div class="project">
+      <img src="quantum computing.jpg" alt="Project 4">
+      <h3>Blog</h3>
+      <p>Authored a blog on Quantum Computing, published on the college website.
+         Explored the fundamentals, applications, and future implications of quantum computing.
+</p>
+      <button onclick="showProjectDetails('project-4')">Read More</button>
+      <div id="project-4" style="display:none;">
+        <p>Researched and wrote a comprehensive article, making complex concepts accessible to a wide audience.
+            Demonstrated expertise in scientific writing, communication, and technical research.
+           Showcased ability to convey complex ideas in a clear and engaging manner.
+           Published work contributes to the college's online resources and fosters interest in emerging technologies.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+<!--Resume-->
+<div id="resume" class="section" style="display:none;">
+    <center>
+       <h1>My Resume</h1>
+  <img src="resume.jpg" alt="Resume Image" style="width:600px;height:600px;"><center>
+</div>
+
+
+
+                    <!-- Contact Section -->
+                    <div id="contact" class="section" style="display:none;">
+                        <h1>Contact Me</h1>
+                        <p>If you would like to get in touch with me, feel free to reach out via the form below or connect with me on social media.</p>
+                        <div class="contact">
+                            <form id="contactForm">
+                            <label for="name">Name:</label><br>
+                            <input type="text" id="name" name="name" required><br><br>
+                            <label for="email">Email:</label><br>
+                            <input type="email" id="email" name="email" required><br><br>
+                            <label for="message">Message:</label><br>
+                            <textarea id="message" name="message" required></textarea><br><br>
+                             <button type="button" onclick="validateForm()">Send Message</button>
+                        </form><br><br>
+                        <p id="formStatus"></p>
+                        <div class="social-media">
+                            <a href="https://instagram.com/yourinstagram" target="_blank">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+                            </a>
+                            <a href="https://linkedin.com/in/yourlinkedin" target="_blank">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+            
+
+
+            // JavaScript function to toggle "More About Me" content visibility
+            window.showMoreAbout = function () {
+                const moreAbout = document.getElementById("more-about");
+                if (moreAbout.style.display === "none" || !moreAbout.style.display) {
+                    moreAbout.style.display = "block";
+                } else {
+                    moreAbout.style.display = "none";
+                }
+            };
+
+
+            // JavaScript function to show the correct section
+            window.showSection = function (sectionId) {
+                const sections = document.querySelectorAll(".section");
+                sections.forEach(section => {
+                    section.style.display = section.id === sectionId ? "block" : "none";
+                });
+            };
+        });
+
+        
+       // JavaScript function to toggle project details visibility
+window.showProjectDetails = function (projectId) {
+  const projectDetails = document.getElementById(projectId);
+  if (projectDetails.style.display === "none" || !projectDetails.style.display) {
+    projectDetails.style.display = "block";
+  } else {
+    projectDetails.style.display = "none";
+  }
+};
+  
+
+
+function validateForm() {
+  const name = document.getElementById("name").value;
+  const email = document.getElementById("email").value;
+  const message = document.getElementById("message").value;
+  const status = document.getElementById("formStatus");
+
+  if (name === "" || email === "" || message === "") {
+    status.innerHTML = "Please fill the form.";
+    status.style.color = "red";
+  } else {
+    status.innerHTML = "Your message has been sent.";
+    status.style.color = "green";
+    
+    // Clear the form fields
+    document.getElementById("name").value = "";
+    document.getElementById("email").value = "";
+    document.getElementById("message").value = "";
+  }
+}
+
+
+    </script>
+</head>
+</html>
+

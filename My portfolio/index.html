@@ -1,0 +1,340 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Portfolio Home</title>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const body = document.body;
+
+            // Apply CSS styles dynamically inside JavaScript
+            const style = `
+                body {
+                    font-family: Arial, sans-serif;
+                    margin: 0;
+                    display: flex;
+                    height: 100vh;
+                    background-image: url('https://images.unsplash.com/photo-1503264116251-35a269479413?auto=format&fit=crop&w=1350&q=80');
+                    background-size: cover;
+                    background-position: center;
+                    color: white;
+                }
+                header {
+                    width: 20%;
+                    background-color: rgba(52, 73, 94, 0.9);
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    padding: 20px 0;
+                }
+                header h2 {
+                    margin-bottom: 30px;
+                }
+                nav {
+                    width: 100%;
+                }
+                nav a {
+                    display: block;
+                    color: white;
+                    text-decoration: none;
+                    padding: 15px 20px;
+                    font-size: 18px;
+                    transition: background 0.3s;
+                }
+                nav a:hover {
+                    background-color: rgba(255, 255, 255, 0.2);
+                }
+                .profile-photo {
+                    margin-top: auto;
+                    margin-bottom: 20px;
+                }
+                .profile-photo img {
+                    width: 100px;
+                    height: 100px;
+                    border-radius: 50%;
+                    border: 3px solid #fff;
+                }
+                .content {
+                    padding: 40px;
+                    width: 80%;
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    background-color: rgba(44, 62, 80, 0.8);
+                    overflow-y: auto;
+                }
+                .content h1 {
+                    font-size: 48px;
+                    margin-bottom: 20px;
+                }
+                .content p {
+                    font-size: 18px;
+                    line-height: 1.6;
+                    margin-bottom: 30px;
+                }
+                .social-media {
+                    display: flex;
+                    gap: 15px;
+                }
+                .social-media a img {
+                    width: 40px;
+                    height: 40px;
+                    transition: transform 0.3s;
+                }
+                .social-media a img:hover {
+                    transform: scale(1.1);
+                }
+                    .progress {
+                    background-color: #34495e;
+                    width: 70%;
+                    height: 20px;
+                    border-radius: 10px;
+                    overflow: hidden;
+                }
+                .progress-bar {
+                    height: 100%;
+                    background-color: #3498db;
+                    text-align: right;
+                    padding-right: 5px;
+                    color: white;
+                    line-height: 20px;
+                }
+                .projects {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+                    gap: 20px;
+                }
+                .project {
+                    background-color: rgba(52, 73, 94, 0.9);
+                    padding: 20px;
+                    border-radius: 10px;
+                }
+                .project img {
+                    width: 100%;
+                    height: 150px;
+                    object-fit: cover;
+                    border-radius: 10px;
+                    margin-bottom: 15px;
+                }
+                // .project {
+                //       background-color: rgba(52, 73, 94, 0.9);
+                //       padding: 20px;
+                //       border-radius: 10px;
+                //       margin-bottom: 20px;
+                //      /* Add a fixed height */
+                //       height: 250px;
+                //       overflow: hidden;
+                // }
+                // .project img {
+                //       width: 100%;
+                //       height: 150px;
+                //       object-fit: cover;
+                //       border-radius: 10px;
+                //       margin-bottom: 15px;
+                // }
+
+                @media (max-width: 768px) {
+                    body {
+                        flex-direction: column;
+                    }
+                    header {
+                        width: 100%;
+                        flex-direction: row;
+                        justify-content: space-around;
+                        padding: 10px 0;
+                    }
+                    nav a {
+                        padding: 10px;
+                        font-size: 16px;
+                    }
+                    .profile-photo {
+                        display: none;
+                    }
+                    .content {
+                        width: 100%;
+                        padding: 20px;
+                    }
+                    .content h1 {
+                        font-size: 36px;
+                    }
+                }
+            `;
+
+            const styleSheet = document.createElement("style");
+            styleSheet.type = "text/css";
+            styleSheet.innerText = style;
+            document.head.appendChild(styleSheet);
+
+            // Main content
+            body.innerHTML = `
+                <header>
+                    <div>
+                        <h2>My Portfolio</h2>
+                        <nav>
+                            <a href="#home" onclick="showSection('home')">Home</a>
+                            <a href="#about" onclick="showSection('about')">About</a>
+                            <a href="#skills" onclick="showSection('skills')">Skills</a>
+                            <a href="#projects" onclick="showSection('projects')">Projects</a>
+                            <a href="#contact" onclick="showSection('contact')">Contact</a>
+                        </nav>
+                    </div>
+                    <div class="profile-photo">
+                        <img src="my self.jpg" alt="Profile Photo">
+                    </div>
+                </header>
+                <div class="content">
+                    <div id="home" class="section">
+                        <h1>Welcome to My Portfolio</h1><br>
+                        <p>Hello! I'm [Your Name], <br>a passionate web developer with expertise in creating dynamic and responsive websites.<br> Explore my projects and feel free to get in touch!</p>
+                        <div class="social-media">
+                            <a href="https://wa.me/yourwhatsappnumber" target="_blank">
+                                <img src="https://cdn-icons-png.flaticon.com/512/124/124034.png" alt="WhatsApp">
+                            </a>
+                            <a href="https://instagram.com/yourinstagram" target="_blank">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+                            </a>
+                            <a href="https://linkedin.com/in/yourlinkedin" target="_blank">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+                            </a>
+                            <a href="https://facebook.com/yourfacebook" target="_blank">
+                                <img src="https://cdn-icons-png.flaticon.com/512/124/124010.png" alt="Facebook">
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- About Section -->
+                    <div id="about" class="section" style="display:none;">
+                        <h1>About Me</h1>
+                        <p>I am a [Your Title], with experience in [brief introduction]. I love to learn new technologies and apply them in innovative projects.</p>
+                        <button onclick="showMoreAbout()">More About Me</button>
+                        <div id="more-about" style="display:none;">
+                            <p>[Add more detailed information about yourself here]</p>
+                        </div>
+                    </div>
+
+                    <!-- Skills Section -->
+                    <div id="skills" class="section" style="display:none;">
+                        <h1>My Skills</h1>
+                        <p>Here are some of the technologies I work with:</p>
+                        <ul>
+                            <li><img src="https://cdn-icons-png.flaticon.com/512/732/732212.png" alt="HTML" width="30"> 
+                            <span>HTML</span>
+                            <div class="progress"><div class="progress-bar" style="width: 80%;">80%</div></div></li><br><br>
+                            <li><img src="https://cdn-icons-png.flaticon.com/512/732/732190.png" alt="CSS" width="30"> 
+                            <span>CSS</span>
+                            <div class="progress"><div class="progress-bar" style="width: 70%;">70%</div></div></li><br><br>
+                            <li><img src="https://cdn-icons-png.flaticon.com/512/919/919828.png" alt="JavaScript" width="30">
+                            <span>JavaScript</span>
+                            <div class="progress"><div class="progress-bar" style="width: 80%;">80%</div></div></li><br><br>
+                            <li><img src="https://cdn-icons-png.flaticon.com/512/919/919826.png" alt="C" width="30">
+                            <span>C</span>
+                            <div class="progress"><div class="progress-bar" style="width: 50%;">50%</div></div></li><br><br>
+                            <li><img src="https://cdn-icons-png.flaticon.com/512/919/919832.png" alt="C++" width="30"> 
+                            <span>C++</span>
+                            <div class="progress"><div class="progress-bar" style="width: 50%;">50%</div></div></li><br><br>
+                            <li><img src="https://cdn-icons-png.flaticon.com/512/5968/5968350.png" alt="Python" width="30">
+                            <span>Python</span>
+                            <div class="progress"><div class="progress-bar" style="width: 50%;">50%</div></div></li>
+                        </ul>
+                    </div>
+                    <!-- Projects Section -->
+<div id="projects" class="section" style="display:none;">
+  <h1>My Projects</h1>
+  <div class="projects">
+    <div class="project">
+      <img src="" alt="Project 1">
+      <h3>Project 1</h3>
+      <p>Project 1 description goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
+      <button onclick="showProjectDetails('project-1')">Read More</button>
+      <div id="project-1" style="display:none;">
+        <p>More details about Project 1 go here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
+      </div>
+    </div>
+    <div class="project">
+      <img src="(link unavailable)" alt="Project 2">
+      <h3>Project 2</h3>
+      <p>Project 2 description goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
+      <button onclick="showProjectDetails('project-2')">Read More</button>
+      <div id="project-2" style="display:none;">
+        <p>More details about Project 2 go here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
+      </div>
+    </div>
+    <div class="project">
+      <img src="(link unavailable)" alt="Project 3">
+      <h3>Project 3</h3>
+      <p>Project 3 description goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
+      <button onclick="showProjectDetails('project-3')">Read More</button>
+      <div id="project-3" style="display:none;">
+        <p>More details about Project 3 go here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
+      </div>
+    </div>
+    <div class="project">
+      <img src="(link unavailable)" alt="Project 4">
+      <h3>Project 4</h3>
+      <p>Project 4 description goes here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
+      <button onclick="showProjectDetails('project-4')">Read More</button>
+      <div id="project-4" style="display:none;">
+        <p>More details about Project 4 go here. Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed sit amet nulla auctor, vestibulum magna sed, convallis ex.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+                    <!-- Contact Section -->
+                    <div id="contact" class="section" style="display:none;">
+                        <h1>Contact Me</h1>
+                        <p>If you would like to get in touch with me, feel free to reach out via the form below or connect with me on social media.</p>
+                        <div class="contact">
+                            <input type="text" placeholder="Your Name" required><br><br>
+                            <input type="email" placeholder="Your Email" required><br><br>
+                            <textarea placeholder="Your Message" rows="5" required></textarea><br><br>
+                            <button>Send Message</button><br><br>
+                        </div>
+                        <div class="social-media">
+                            <a href="https://instagram.com/yourinstagram" target="_blank">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174855.png" alt="Instagram">
+                            </a>
+                            <a href="https://linkedin.com/in/yourlinkedin" target="_blank">
+                                <img src="https://cdn-icons-png.flaticon.com/512/174/174857.png" alt="LinkedIn">
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            `;
+
+            // JavaScript function to toggle "More About Me" content visibility
+            window.showMoreAbout = function () {
+                const moreAbout = document.getElementById("more-about");
+                if (moreAbout.style.display === "none" || !moreAbout.style.display) {
+                    moreAbout.style.display = "block";
+                } else {
+                    moreAbout.style.display = "none";
+                }
+            };
+
+            // JavaScript function to show the correct section
+            window.showSection = function (sectionId) {
+                const sections = document.querySelectorAll(".section");
+                sections.forEach(section => {
+                    section.style.display = section.id === sectionId ? "block" : "none";
+                });
+            };
+        });
+       // JavaScript function to toggle project details visibility
+window.showProjectDetails = function (projectId) {
+  const projectDetails = document.getElementById(projectId);
+  if (projectDetails.style.display === "none" || !projectDetails.style.display) {
+    projectDetails.style.display = "block";
+  } else {
+    projectDetails.style.display = "none";
+  }
+};
+
+
+    </script>
+</head>
+<body>
+</body>
+</html>
+
